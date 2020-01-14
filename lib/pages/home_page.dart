@@ -6,14 +6,18 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../route/application.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   String homePageContent = "正在获取数据";
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -99,6 +103,9 @@ class TopNavigator extends StatelessWidget {
     return InkWell(
       onTap: (){
         print("点击了");
+
+        // 路由
+        Application.router.navigateTo(context, '/detail?id=${item["goodsID"]}');
       },
       child: Column(
         children: <Widget>[
@@ -168,6 +175,8 @@ class Recommend extends StatelessWidget {
   Widget item(index) {
     return InkWell(
       onTap: (){
+
+
 
       },
       child: Container(
